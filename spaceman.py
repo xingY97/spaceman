@@ -7,7 +7,7 @@ def load_word():
     Returns: 
            string: The secret word to be used in the spaceman guessing game
     '''
-    f = open('words.txt', 'r')
+    f = open('/Users/xin/makeSchool/spaceman/words.txt', 'r')
     words_list = f.readlines()
     f.close()
 
