@@ -25,11 +25,11 @@ def is_word_guessed(secret_word, letters_guessed):
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
-
-    if letters_guessed in secret_word:
-        return True
-    else:
-        return False
+    for letter in secret_word:
+        if letter not in letters_guessed:
+            return False
+    
+    return True
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -42,8 +42,13 @@ def get_guessed_word(secret_word, letters_guessed):
     '''
 
     #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
-
-    
+    guesses = ""
+    for letter in letters_guessed:
+        if letter in secret_word:
+            guesses += letter
+        else:
+            guesses += ' _ '
+    return guesses
 
 def is_guess_in_word(guess, secret_word):
     '''
@@ -55,12 +60,9 @@ def is_guess_in_word(guess, secret_word):
         bool: True if the guess is in the secret_word, False otherwise
     '''
     #TODO: check if the letter guess is in the secret word
+    return guess in secret_word
 
     
-
-
-
-
 def spaceman(secret_word):
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
@@ -80,20 +82,9 @@ def spaceman(secret_word):
     guess_count = 0
     guess_limit = 7
     out_of_guesses = False
-
-    while guess != secret_word and not (out_of_guesses):
-        if guess_count < guess_limit:
-            guess = input("You have total of 7 guesses, enter another guess:  ")
-            guess_count += 1
-            
-        else:
-            out_of_guesses = True
-    if out_of_guesses:
-        print("out of guesses, you lose!")
-    else:
-        print("you win!")
-        load_word()
-        playagain(secret_word)
+    print("welcome to spaceman!")
+    print(f"The secret word contains: {len(secret_word)} letters")
+    
     
 
 
@@ -101,4 +92,4 @@ def spaceman(secret_word):
 
 #These function calls that will start the game
 secret_word = load_word()
-spaceman(load_word())
+spaceman(secret_word)
