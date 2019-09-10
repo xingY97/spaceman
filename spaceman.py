@@ -17,6 +17,23 @@ def is_word_guessed(secret_word, letters_guessed):
             return False
     
     return True
+def play_again():
+    print("Do you want to play again?(yes or no)")
+    return input().lower().startswith('y')
+def valid_input():
+    while True:
+        guess = input('Please guess a letter: ').lower()
+        if guess.isalpha():
+            if len(guess) > 1:
+                print('invalid input: ' + guess)
+                continue
+            else:
+                return guess
+                break
+        else:
+            print('Not a valid input: ' + guess)
+            continue
+        
 
 def get_guessed_word(secret_word, letters_guessed):
 
@@ -35,7 +52,6 @@ def is_guess_in_word(guess, secret_word):
     return (guess in secret_word)
 
 def spaceman(secret_word):
-    
     print("welcome to spaceman")
     print("The secret word has " + str(len(secret_word)) + " letters, goodluck!")
     correct_guess = False
@@ -46,14 +62,28 @@ def spaceman(secret_word):
     guesses_left = len(secret_word)
     unused_letters = list('abcdefghijklmnopqrstuvwxyz')
     while guesses_left > 0 and correct_guess is False:
-
         if get_guessed_word == secret_word:
             print("you got it right, the word was" + secret_word)
-            
+            correct_guess = False
+            guess_limit -= 1
         print('you have ' + str(guess_limit) + ' guesses left.')
         break
 
         if guess in secret_word:
+            if guess in unused_letters:
+                print("good guess " + is_guess_in_word)
+                print('___')
+            else:
+                 letters_guessed.append(guess)
+            print("nice, " + get_guessed_word)
+        else:
+            if guess in secret_word:
+                print("you have already tried that letter," + get_guessed_word)
+            else:
+                letters_guessed.append(guess)
+                guesses_left -= 1
+                print("that letter is not in the word: " + get_guessed_word)
+                    
     
 
     
