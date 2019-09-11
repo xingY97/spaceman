@@ -50,21 +50,25 @@ def spaceman(secret_word):
         print ('You have ' + str(total_guesses) + ' guesses left.')
 
         guess = input('Please guess a letter: ')
-
+        #check if user has guessed the word
         if guess in secret_word:
             if guess in letters_guessed:
                 print ("You have guessed that letter already, please try something else: " + get_guessed_word(secret_word, letters_guessed))
+                print ("\n")
             else:
                 letters_guessed.append(guess)
                 print ('Good guess: ' + get_guessed_word(secret_word, letters_guessed))
+                print("\n")
                 
         else:
             if guess in letters_guessed:
-                print ("You have guessed that letter already, please try something else: " + get_guessed_word(secret_word, letters_guessed))               
+                print ("You have guessed that letter already, please try something else: " + get_guessed_word(secret_word, letters_guessed))
+                print("\n")               
             else:
                 letters_guessed.append(guess)
                 total_guesses-= 1
                 print ('Oops! That letter is not in the word: ' + get_guessed_word(secret_word, letters_guessed))
+                print("\n")
                
 
     if correct_guess == True:
