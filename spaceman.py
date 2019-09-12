@@ -1,5 +1,5 @@
 import random
-
+import os
 def load_word():
 
     f = open('words.txt', "r")
@@ -33,6 +33,11 @@ def get_guessed_word(secret_word, letters_guessed):
 def is_guess_in_word(guess,secret_word):
     # TODO: Check if the letter guess is in the secret word
     return (guess in secret_word)
+def guessed_so_far(wrong):
+    guess = ""
+    wrong = []
+     
+    
 
 def spaceman(secret_word):
     #tell user about spaceman game
@@ -46,7 +51,7 @@ def spaceman(secret_word):
     while total_guesses> 0 and total_guesses<= 7 and correct_guess is False:
         if secret_word == get_guessed_word(secret_word, letters_guessed):
             wordGuessed = True
-            break
+            
         print ('You have ' + str(total_guesses) + ' guesses left.')
 
         guess = input('Please guess a letter: ')
@@ -55,19 +60,20 @@ def spaceman(secret_word):
             if guess in letters_guessed:
                 print ("You have guessed that letter already, please try something else: " + get_guessed_word(secret_word, letters_guessed))
                 print ("\n")
+                
             else:
                 letters_guessed.append(guess)
-                print ('Good guess: ' + get_guessed_word(secret_word, letters_guessed))
+                print ("You got one ! : " + get_guessed_word(secret_word, letters_guessed))
                 print("\n")
                 
         else:
-            if guess in letters_guessed:
+            if guess in letters_guessed:#check if user have gussed the letter already
                 print ("You have guessed that letter already, please try something else: " + get_guessed_word(secret_word, letters_guessed))
                 print("\n")               
             else:
                 letters_guessed.append(guess)
                 total_guesses-= 1
-                print ('Oops! That letter is not in the word: ' + get_guessed_word(secret_word, letters_guessed))
+                print ("Oops! That letter is not in the word: " + get_guessed_word(secret_word, letters_guessed))
                 print("\n")
                
 
@@ -77,6 +83,7 @@ def spaceman(secret_word):
     elif total_guesses == 0:
         print("\n")
         print ('Sorry, you lost. The word was ' + secret_word)
+
 
 
 secret_word = load_word()
