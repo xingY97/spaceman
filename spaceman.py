@@ -88,16 +88,17 @@ secret_word = load_word()
 
 def test_is_word_guessed ():
     assert is_word_guessed ("apple",['apple']) == True
-    assert is_word_guessed("banana",['apple']) == False
+    assert is_word_guessed("a",['b']) == False
 def test_get_guessed_word():
     assert get_guessed_word("apple",['a','b','c']) == "a_ _ _ _"
-    assert get_guessed_word("banana",['b','n','a']) == "banana"
+    
 def test_is_guess_in_word():
     assert is_guess_in_word("apple",['apple']) == True
     assert is_guess_in_word("banana",['banana']) == False
 
 
 if __name__ == "__main__":
+    test()
     test_is_word_guessed()
     test_get_guessed_word()
     test_is_guess_in_word()
