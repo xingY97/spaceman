@@ -34,7 +34,16 @@ def is_guess_in_word(guess,secret_word):
     # TODO: Check if the letter guess is in the secret word
     return (guess in secret_word)
 
-     
+def playagain(player):
+    while True:
+        if player.isalpha():
+            if player == 'y':
+                spaceman(load_word())
+            elif player == 'n':
+                return False
+            else:
+                print('Please follow firection!')
+
 
 def spaceman(secret_word):
     #tell user about spaceman game
@@ -87,14 +96,15 @@ secret_word = load_word()
 #spaceman(secret_word)
 
 def test_is_word_guessed ():
-    assert is_word_guessed ("apple",['apple']) == True
-    assert is_word_guessed("a",['b']) == False
-def test_get_guessed_word():
-    assert get_guessed_word("apple",['a','b','c']) == "a_ _ _ _"
+    assert is_word_guessed ("ape",['a','p','p','l','e']) == False
+    assert is_word_guessed("abs",['a','b','s']) == False
     
 def test_is_guess_in_word():
     assert is_guess_in_word("apple",['apple']) == True
-    assert is_guess_in_word("banana",['banana']) == False
+    assert is_guess_in_word("banana",['banana']) == True
+
+def test_pay_again():
+    assert playagain('n')==False
 
 
 if __name__ == "__main__":
